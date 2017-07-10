@@ -1,7 +1,5 @@
 import random
 
-	# print fdata
-
 class Hangman(object):
 	def __init__(self):
 		print "Welcome to Hangman! Are you ready to play?"

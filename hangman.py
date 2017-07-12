@@ -23,10 +23,12 @@ class Hangman(object):
 		with open("words.txt", "r+") as f:
 			word_list = [line.strip().split() for line in f]
 		# this chooses the random word from the fdata list
-		word_chosen = str(random.choice(word_list))
+		word_chosen = str(random.choice(word_list)).lower()
 		print word_chosen
+		for letter in word_chosen:
+			print letter.replace(letter," * ", word_chosen.__len__())
 		while guesses < 6:
-			guess = raw_input("Guess a letter -> ")
+			guess = raw_input("Guess a letter -> ").lower()
 			if guess in word_chosen:
 				print guess in word_chosen
 			# word_chosen.find(guess)

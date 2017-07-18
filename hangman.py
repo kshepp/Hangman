@@ -1,4 +1,4 @@
-import random
+import random, re
 
 class Hangman(object):
 	def __init__(self):
@@ -24,13 +24,16 @@ class Hangman(object):
 			word_list = [line.strip().split() for line in f]
 		# this chooses the random word from the fdata list
 		word_chosen = str(random.choice(word_list)).lower()
+		#need to get rid of [' and '] at the end of each
+		word_chosen = word_chosen[2:-2]
 		print word_chosen
 		for letter in word_chosen:
-			print letter.replace(letter," * ", word_chosen.__len__())
+			hidden_letters = letter.replace(letter," * ", word_chosen.__len__())
+			print hidden_letters,
 		while guesses < 6:
-			guess = raw_input("Guess a letter -> ").lower()
+			guess = raw_input("\n Guess a letter -> \n").lower()
 			if guess in word_chosen:
-				print guess in word_chosen
+				print guess.replace(" * ", letter, word_chosen.__len__())
 			# word_chosen.find(guess)
 
 

@@ -1,5 +1,6 @@
 import random, re
 
+
 class Hangman(object):
 	def __init__(self):
 		print "Welcome to Hangman! Are you ready to play?"
@@ -19,27 +20,38 @@ class Hangman(object):
 
 	def game(self):
 		guesses = 0
-		letters_used = ""
+		letters_used = []
+
 		with open("words.txt", "r+") as f:
 			word_list = [line.strip().split() for line in f]
 		# this chooses the random word from the fdata list
 		word_chosen = str(random.choice(word_list)).lower()
-		#need to get rid of [' and '] at the end of each
+		# need to get rid of [' and '] at the end of each
 		word_chosen = word_chosen[2:-2]
 		print word_chosen
-		for letter in word_chosen:
-			hidden_letters = letter.replace(letter," * ", word_chosen.__len__())
-			print hidden_letters,
+
 		while guesses < 6:
+
+			for letter in word_chosen:
+				hidden_letters = letter.replace(letter, " * ", word_chosen.__len__())
+				print hidden_letters,
+
 			guess = raw_input("\n Guess a letter -> \n").lower()
-			if guess in word_chosen:
-				print guess.replace(" * ", letter, word_chosen.__len__())
+
+			if guess in word_chosen and not letters_used:
+				print "You've found a letter!"
+				letters_used.append(guess)
+				print "Letters used so far:", letters_used
+				guesses+=1
+				print "You have ", 6-int(guesses), "guesses left"
+				print guess in word_chosen
+
 			# word_chosen.find(guess)
 
 
 Hangman()
 
-#user inputs letter guesses
+# user inputs letter guesses
 #limit on guesses
 #grab a word for guessing
 #check if user input a single letter

@@ -30,21 +30,34 @@ class Hangman(object):
 		word_chosen = word_chosen[2:-2]
 		print word_chosen
 
-		while guesses < 6:
+		for letter in word_chosen:
+			hidden_letters = letter.replace(letter, " * ", word_chosen.__len__())
+			print hidden_letters,
 
-			for letter in word_chosen:
-				hidden_letters = letter.replace(letter, " * ", word_chosen.__len__())
-				print hidden_letters,
+
+		while guesses < 6:
 
 			guess = raw_input("\n Guess a letter -> \n").lower()
 
-			if guess in word_chosen and not letters_used:
+			if guess in letters_used:
+				print "Try again, you must choose a letter that you haven't guessed"
+				print "Letters used so far:", letters_used.append(guess)
+
+			elif guess in word_chosen:
 				print "You've found a letter!"
 				letters_used.append(guess)
-				print "Letters used so far:", letters_used
+				print "Letters used so far:",letters_used
+				print "You have ", 6-int(guesses), "guesses left"
+
+			elif guess not in word_chosen:
+				print "Ut-oh! I'm drawing"
+				letters_used.append(guess)
+				print "Letters used so far:",letters_used
 				guesses+=1
 				print "You have ", 6-int(guesses), "guesses left"
-				print guess in word_chosen
+
+
+
 
 			# word_chosen.find(guess)
 

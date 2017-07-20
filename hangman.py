@@ -47,11 +47,15 @@ class Hangman(object):
 				print "Letters used so far:", letters_used.append(guess)
 
 			elif guess in word_chosen:
-				print "You've found a letter!"
-				letters_used.append(guess)
-				# word_chosen.replace(" * ", guess)
-				print "Letters used so far:",letters_used
-				print "You have ", 6-int(guesses), "guesses left"
+				if guess == word_chosen:
+					print "You win! I'll get you next time."
+					break
+				else:
+					print "You've found a letter!"
+					letters_used.append(guess)
+					# word_chosen.replace(" * ", guess)
+					print "Letters used so far:",letters_used
+					print "You have ", 6-int(guesses), "guesses left"
 
 			elif guess not in word_chosen:
 				print "Ut-oh! I'm drawing"

@@ -60,33 +60,71 @@ class Hangman(object):
 			elif guess not in word_chosen:
 				print "Ut-oh! I'm drawing"
 				letters_used.append(guess)
+				self.drawing(guesses)
 				print "Letters used so far:",letters_used
 				guesses+=1
 				print "You have ", 6-int(guesses), "guesses left"
 
 
+	def drawing(self, guesses):
+		if guesses == 0:
+			print """ |------ """
+			print """ |       """
+			print """ |       """
+			print """ |       """
+			print """ |       """
+			print """ |       """
+			print """ |_______ """
+		elif guesses == 1:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |      """
+			print """ |      """
+			print """ |      """
+			print """ |_______ """
+		elif guesses == 2:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |     |"""
+			print """ |     |"""
+			print """ |      """
+			print """ |_______ """
 
-
-			# word_chosen.find(guess)
+		elif guesses == 3:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |   \_|"""
+			print """ |     |"""
+			print """ |      """
+			print """ |_______ """
+		elif guesses == 4:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |   \_|_/"""
+			print """ |     |"""
+			print """ |      """
+			print """ |_______ """
+		elif guesses == 5:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |   \_|_/"""
+			print """ |     |"""
+			print """ |    / """
+			print """ |_______ """
+		elif guesses == 6:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |   \_|_/"""
+			print """ |     |"""
+			print """ |    / \ """
+			print """ |_______ """
 
 
 Hangman()
 
-# user inputs letter guesses
-#limit on guesses
-#grab a word for guessing
-#check if user input a single letter
-#is letter in hidden work? If so, how many times does it appear?
-#print the ltters
-#add +1 to counter variable if guess is wrong to limit the guesses
-
-# Concepts to keep in mind:
-# Random
-# Variables
-# Boolean
-# Input and Output
-# Integer
-# Char
-# String
-# Length
-# Print

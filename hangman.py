@@ -1,5 +1,4 @@
-import random, re
-
+import random
 
 class Hangman(object):
 	def __init__(self):
@@ -24,12 +23,8 @@ class Hangman(object):
 
 		with open("words.txt", "r+") as f:
 			word_list = [line.strip().split() for line in f]
-		# this chooses the random word from the fdata list
 		word_chosen = str(random.choice(word_list)).lower()
-		# need to get rid of [' and '] at the end of each
 		word_chosen = word_chosen[2:-2]
-		print word_chosen
-
 
 		while guesses < 6:
 
@@ -53,7 +48,6 @@ class Hangman(object):
 				else:
 					print "You've found a letter!"
 					letters_used.append(guess)
-					# word_chosen.replace(" * ", guess)
 					print "Letters used so far:",letters_used
 					print "You have ", 6-int(guesses), "guesses left"
 
@@ -64,39 +58,42 @@ class Hangman(object):
 				print "Letters used so far:",letters_used
 				guesses+=1
 				print "You have ", 6-int(guesses), "guesses left"
+			if guesses == 6:
+				print "You lose! The word was: " + word_chosen,
+
 
 
 	def drawing(self, guesses):
 		if guesses == 0:
-			print """ |------ """
-			print """ |       """
-			print """ |       """
-			print """ |       """
-			print """ |       """
-			print """ |       """
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |      """
+			print """ |      """
+			print """ |      """
 			print """ |_______ """
 		elif guesses == 1:
 			print """ |------"""
 			print """ |     |"""
 			print """ |     O"""
-			print """ |      """
-			print """ |      """
-			print """ |      """
-			print """ |_______ """
-		elif guesses == 2:
-			print """ |------"""
-			print """ |     |"""
-			print """ |     O"""
 			print """ |     |"""
 			print """ |     |"""
 			print """ |      """
 			print """ |_______ """
 
-		elif guesses == 3:
+		elif guesses == 2:
 			print """ |------"""
 			print """ |     |"""
 			print """ |     O"""
 			print """ |   \_|"""
+			print """ |     |"""
+			print """ |      """
+			print """ |_______ """
+		elif guesses == 3:
+			print """ |------"""
+			print """ |     |"""
+			print """ |     O"""
+			print """ |   \_|_/"""
 			print """ |     |"""
 			print """ |      """
 			print """ |_______ """
@@ -106,17 +103,9 @@ class Hangman(object):
 			print """ |     O"""
 			print """ |   \_|_/"""
 			print """ |     |"""
-			print """ |      """
-			print """ |_______ """
-		elif guesses == 5:
-			print """ |------"""
-			print """ |     |"""
-			print """ |     O"""
-			print """ |   \_|_/"""
-			print """ |     |"""
 			print """ |    / """
 			print """ |_______ """
-		elif guesses == 6:
+		elif guesses == 5:
 			print """ |------"""
 			print """ |     |"""
 			print """ |     O"""
@@ -125,6 +114,7 @@ class Hangman(object):
 			print """ |    / \ """
 			print """ |_______ """
 
-
 Hangman()
 
+#improvements to make:
+# 1) if you reveal all the letters make it so you don't have to retype the word to win
